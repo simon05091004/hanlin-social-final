@@ -139,10 +139,10 @@ def home_html(base_url):
 
 
 def quiz_html():
-    data = html.escape(json.dumps(QUESTIONS, ensure_ascii=False))
+    data = json.dumps(QUESTIONS, ensure_ascii=False).replace("</", "<\\/")
     return response_page(
         "學生作答",
-        f"""<main class="wrap"><div class="top"><div><h1>國小五下社會期末複習卷</h1><p class="muted">翰林版主軸｜滿分100分</p></div><span class="pill" id="timer">00:00</span></div><section class="card" id="studentBox"><div class="row"><div><label>班級</label><input id="className" placeholder="例：五年1班"></div><div><label>座號</label><input id="seat" placeholder="例：12"></div><div><label>姓名</label><input id="student" placeholder="請輸入姓名"></div></div><p><button id="startBtn">開始作答</button></p></section><form id="quizForm" hidden></form><section class="card" id="result" hidden></section></main><script>const QUESTIONS=JSON.parse(document.getElementById('qdata')?.textContent||'{data}');</script><script type="application/json" id="qdata">{data}</script><script>{QUIZ_JS}</script>""",
+        f"""<main class="wrap"><div class="top"><div><h1>國小五下社會期末複習卷</h1><p class="muted">翰林版主軸｜滿分100分</p></div><span class="pill" id="timer">00:00</span></div><section class="card" id="studentBox"><div class="row"><div><label>班級</label><input id="className" placeholder="例：五年1班"></div><div><label>座號</label><input id="seat" placeholder="例：12"></div><div><label>姓名</label><input id="student" placeholder="請輸入姓名"></div></div><p><button id="startBtn">開始作答</button></p></section><form id="quizForm" hidden></form><section class="card" id="result" hidden></section></main><script type="application/json" id="qdata">{data}</script><script>const QUESTIONS=JSON.parse(document.getElementById('qdata').textContent);</script><script>{QUIZ_JS}</script>""",
     )
 
 
